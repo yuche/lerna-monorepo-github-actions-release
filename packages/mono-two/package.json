@@ -12,7 +12,7 @@
     "directory": "packages/mono-two"
   },
   "license": "MIT",
-  "author": "azu",
+  "author": "yuche",
   "files": [
     "bin/",
     "lib/",
