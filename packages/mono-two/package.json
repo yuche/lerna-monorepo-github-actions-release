@@ -1,6 +1,6 @@
 {
   "name": "@coldsnap/mono-two",
-  "version": "1.7.3",
+  "version": "1.7.4",
   "description": "",
   "homepage": "https://github.com/yuche/lerna-monorepo-github-actions-release/tree/master/packages/mono-two/",
   "bugs": {
@@ -25,7 +25,7 @@
   },
   "scripts": {},
   "dependencies": {
-    "@coldsnap/mono-one": "^1.7.3"
+    "@coldsnap/mono-one": "^1.7.4"
   },
   "publishConfig": {
     "access": "public"
