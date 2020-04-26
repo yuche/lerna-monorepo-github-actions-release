@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.7.3](https://github.com/yuche/lerna-monorepo-github-actions-release/compare/v1.6.4...v1.7.3) (2020-04-26)
+
+**Note:** Version bump only for package @coldsnap/mono-two
+
+
+
+
+
 ## [1.7.2](https://github.com/yuche/lerna-monorepo-github-actions-release/compare/v1.6.4...v1.7.2) (2020-04-26)
 
 **Note:** Version bump only for package @coldsnap/mono-two
