@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/azu/lerna-monorepo-github-actions-release/compare/v1.6.4...v1.7.0) (2020-04-26)
+
+**Note:** Version bump only for package @coldsnap/mono-one
+
+
+
+
+
 ## [1.6.6](https://github.com/azu/lerna-monorepo-github-actions-release/compare/v1.6.4...v1.6.6) (2020-04-26)
 
 **Note:** Version bump only for package @coldsnap/mono-one

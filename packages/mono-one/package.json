@@ -1,6 +1,6 @@
 {
   "name": "@coldsnap/mono-one",
-  "version": "1.6.6",
+  "version": "1.7.0",
   "description": "",
   "homepage": "https://github.com/azu/lerna-monorepo-github-actions-release/tree/master/packages/mono-one/",
   "bugs": {
