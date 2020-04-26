@@ -3,10 +3,5 @@
     "packages/*"
   ],
   "version": "1.7.2",
-  "includeMergedTags": true,
-  "command": {
-    "publish": {
-      "registry": "https://npm.pkg.github.com"
-    }
-  }
+  "includeMergedTags": true
 }
