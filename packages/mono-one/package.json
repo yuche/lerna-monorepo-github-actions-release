@@ -1,6 +1,6 @@
 {
   "name": "@coldsnap/mono-one",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "",
   "homepage": "https://github.com/yuche/lerna-monorepo-github-actions-release/tree/master/packages/mono-one/",
   "bugs": {
