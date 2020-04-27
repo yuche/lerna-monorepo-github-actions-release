@@ -12,10 +12,18 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-18.04
-    if: contains(github.event.head_commit.message, 'chore(release)') && !contains(github.event.head_commit.message, '[skip-ci]')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name : GITHUB CONTEXT
+        env: 
+          GITHUB_CONTEXT: ${{ toJson(github) }} 
+        run: echo "$GITHUB_CONTEXT" 
+      - name: get commit message
+        run: |
+           echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+      - name: show commit message
+        run : echo $commitmsg
       - name: Setup Node ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
@@ -29,14 +37,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Install
+        if: contains( env.commitmsg , 'chore(release):' )
         run: yarn install
       # Define ${CURRENT_VERSION}
       - name: Set Current Version
+        if: contains( env.commitmsg , 'chore(release):' )
         shell: bash -ex {0}
         run: |
           CURRENT_VERSION=$(node -p 'require("./lerna.json").version')
           echo "::set-env name=CURRENT_VERSION::${CURRENT_VERSION}"
       - name: Tag Check
+        if: contains( env.commitmsg , 'chore(release):' )
         id: tag_check
         shell: bash -ex {0}
         run: |
@@ -51,6 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git Tag
+        if: contains( env.commitmsg , 'chore(release):' )
         if: steps.tag_check.outputs.exists_tag == 'false'
         uses: azu/action-package-version-to-git-tag@v1
         with:
@@ -60,6 +72,7 @@ jobs:
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
       - name: Create Release
+        if: contains( env.commitmsg , 'chore(release):' )
         id: create_release
         if: steps.tag_check.outputs.exists_tag == 'false' && github.event.pull_request.merged == true
         uses: actions/create-release@v1
@@ -74,6 +87,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Publish
+        if: contains( env.commitmsg , 'chore(release):' )
         if: steps.tag_check.outputs.exists_tag == 'false'
         run: |
           yarn lerna publish from-package --yes
@@ -81,6 +95,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/github-script@0.8.0
+        if: contains( env.commitmsg , 'chore(release):' )
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
