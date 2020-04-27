@@ -62,8 +62,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create Git Tag
-        if: contains( env.commitmsg , 'chore(release):' )
-        if: steps.tag_check.outputs.exists_tag == 'false'
+        if: contains( env.commitmsg , 'chore(release):' ) && steps.tag_check.outputs.exists_tag == 'false'
         uses: azu/action-package-version-to-git-tag@v1
         with:
           version: ${{ env.CURRENT_VERSION }}
@@ -72,9 +71,8 @@ jobs:
           git_commit_sha: ${{ github.sha }}
           git_tag_prefix: "v"
       - name: Create Release
-        if: contains( env.commitmsg , 'chore(release):' )
         id: create_release
-        if: steps.tag_check.outputs.exists_tag == 'false' && github.event.pull_request.merged == true
+        if: steps.tag_check.outputs.exists_tag == 'false' && github.event.pull_request.merged == true && steps.tag_check.outputs.exists_tag == 'false'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -87,8 +85,7 @@ jobs:
           draft: false
           prerelease: false
       - name: Publish
-        if: contains( env.commitmsg , 'chore(release):' )
-        if: steps.tag_check.outputs.exists_tag == 'false'
+        if: steps.tag_check.outputs.exists_tag == 'false' && contains( env.commitmsg , 'chore(release):' )
         run: |
           yarn lerna publish from-package --yes
         env:
