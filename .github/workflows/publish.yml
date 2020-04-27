@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        - id: log
+        id: log
           run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
         if: "contains(steps.log.outputs.message, 'chore(release):')"
       - name: Setup Node ${{ matrix.node_version }}
