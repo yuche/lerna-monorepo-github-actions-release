@@ -12,10 +12,12 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-18.04
-    if: "contains(github.event.head_commit.message, 'chore(release):')"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        - id: log
+          run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
+        if: "contains(steps.log.outputs.message, 'chore(release):')"
       - name: Setup Node ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
