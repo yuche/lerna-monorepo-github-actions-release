@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v2
       - name: check release condition
         run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
-        if: "contains(steps.log.outputs.message, 'chore(release):')"
+      - if: "contains(steps.log.outputs.message, 'chore(release):')"
       - name: Setup Node ${{ matrix.node_version }}
         uses: actions/setup-node@v1
         with:
