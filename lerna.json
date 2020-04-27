@@ -2,6 +2,6 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.7.7",
+  "version": "1.7.8",
   "includeMergedTags": true
 }
