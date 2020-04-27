@@ -3,7 +3,7 @@ on:
   # When Release Pull Request is merged
   pull_request:
     branches:
-      - master
+      - v3
     types: [closed]
 
 env:
@@ -12,7 +12,7 @@ jobs:
   publish:
     name: Publish
     runs-on: ubuntu-18.04
-    if: "contains(github.event.head_commit.message, 'chore(release)')"
+    if: contains(github.event.head_commit.message, 'chore(release)') && !contains(github.event.head_commit.message, '[skip-ci]')
     steps:
       - name: Checkout
         uses: actions/checkout@v2
